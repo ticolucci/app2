@@ -1,5 +1,8 @@
 App2::Application.routes.draw do
-  resources :users, :only => [:create, :index]
+  devise_for :accounts
 
-  root :to => "users#index"
+  authenticate :account do
+    resources :users, :only => [:create, :index]
+    root :to => "users#index"
+  end
 end
