@@ -10,8 +10,16 @@ describe UsersController do
       end
 
       it "creates a new user" do
-        User.should_receive(:create).with(:email => 'me@work.com')
-        post 'create', :email => 'me@work.com'
+        expect {
+          post 'create', :email => 'me@work.com'
+        }.to change(User, :count).by(1)
+      end
+    end
+
+    context "when an e-mail isn't given" do
+      it "returns a 422 code" do
+        post 'create'
+        response.status.should == 422
       end
     end
   end

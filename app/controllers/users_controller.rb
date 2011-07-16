@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
 
   def create
-    User.create(:email => params[:email])
-    render :nothing => true, :status => 201
+    user = User.new(:email => params[:email])
+    if user.save
+      render :nothing => true, :status => 201
+    else
+      render :nothing => true, :status => 422
+    end
   end
 
 end
