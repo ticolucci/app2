@@ -4,7 +4,7 @@ describe "Listing all the users" do
 
   before do
     Account.create!(:login => "login", :password => 'password', :password_confirmation => 'password')
-    User.create :email => 'user@home.com'
+    @user = User.create :email => 'user@home.com'
     visit '/'
     fill_in 'Login', :with => "login"
     fill_in 'Password', :with => 'password'
@@ -13,6 +13,14 @@ describe "Listing all the users" do
 
   it "displays the registered user email" do
     page.should have_content "user@home.com"
+  end
+  
+  it "lists emails as lnks to edition" do
+    page.should have_selector("a[href='/users/#{@user.id}/edit']")
+  end
+  
+  it "has a link to create an user" do
+    page.should have_selector("a[href='/users/new']")
   end
 
 end

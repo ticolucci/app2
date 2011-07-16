@@ -1,0 +1,5 @@
+<%= form_for @user, :method => :put do |form| %>
+	<%= form.label :email %>
+	<%= form.email_field :email %>
+	<%= form.submit %>
+<% end %>

@@ -14,8 +14,15 @@ class UsersController < ApplicationController
   end
   
   def update
-    User.find(params[:id]).update_attribute(:email, params[:email])
+    User.find(params[:id]).update_attribute(:email, params[:user][:email])
     redirect_to :root
   end
-
+  
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def new
+    @user = User.new
+  end
 end

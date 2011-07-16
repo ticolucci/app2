@@ -28,7 +28,7 @@ describe UsersController do
     context "with another e-mail" do
       before do
         @user = User.create!(:email => "me@work.com")
-        put 'update', :id => @user.id, :email => "other_me@work.com"
+        put 'update', :id => @user.id, :user => { :email => "other_me@work.com"}
       end
       
       it "edits the user" do
@@ -40,5 +40,4 @@ describe UsersController do
       end
     end
   end
-
 end
