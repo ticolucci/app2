@@ -5,9 +5,6 @@ gem 'devise'
 
 gem 'sqlite3'
 
-group :production do
-  gem 'pg'
-end
 
 group :test do
   gem 'rspec-rails'

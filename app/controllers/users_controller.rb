@@ -12,5 +12,10 @@ class UsersController < ApplicationController
       render :nothing => true, :status => 422
     end
   end
+  
+  def update
+    User.find(params[:id]).update_attribute(:email, params[:email])
+    redirect_to :root
+  end
 
 end

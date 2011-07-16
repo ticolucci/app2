@@ -23,5 +23,22 @@ describe UsersController do
       end
     end
   end
+  
+  describe "Edition" do
+    context "with another e-mail" do
+      before do
+        @user = User.create!(:email => "me@work.com")
+        put 'update', :id => @user.id, :email => "other_me@work.com"
+      end
+      
+      it "edits the user" do
+        User.find(@user).email.should == "other_me@work.com"
+      end
+      
+      it "should redirect to index" do
+        response.should be_redirect
+      end
+    end
+  end
 
 end
